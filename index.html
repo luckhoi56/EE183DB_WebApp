@@ -44,13 +44,14 @@
 		<script src="javascripts/create-graph.js"></script>
 		<script>
 		var connection = new WebSocket('ws://'+location.hostname+':81/', ['arduino']);
-		var x = document.getElementById('x').value;
-		var y = document.getElementById('y').value;
-		var myObj = {"x": x, "y" :y};
-		var myJSON = JSON.stringify(myObj);
+
 		document.getElementById("myBtn").addEventListener("click",testJSON);
 
 		function testJSON(){
+			var x = document.getElementById('x').value;
+			var y = document.getElementById('y').value;
+			var myObj = {"x": x, "y" :y};
+			var myJSON = JSON.stringify(myObj);
 			document.getElementById("demo").innerHTML = myJSON;
 		}
 
