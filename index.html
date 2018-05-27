@@ -33,19 +33,42 @@
     	</div>
 
 
-  <input type="text" name="x" id="x"/>x</intput>
+  <input type="number" name="x" id="x"/>x</intput>
 	<br><br>
-  <input type="text" name="x" id="y"/>y</intput>
+  <input type="number" name="x" id="y"/>y</intput>
 	<br>
-	<button type="button">Submit!</button>
+	<button id="myBtn">Try it</button>
+	<p id="demo"></p>
 
 
-
-		<script
-		src="javascripts/create-graph.js">
-
+		<script src="javascripts/create-graph.js"></script>
+		<script>
+		var connection = new WebSocket('ws://'+location.hostname+':81/', ['arduino']);
 		var x = document.getElementById('x').value;
 		var y = document.getElementById('y').value;
+		var myObj = {"x": x, "y" :y};
+		var myJSON = JSON.stringify(myObj);
+		document.getElementById("myBtn").addEventListener("click",testJSON);
+
+		function testJSON(){
+			document.getElementById("demo").innerHTML = myJSON;
+		}
+
+
+		function btnSend(val) {
+      var timeStr = new Date().toLocaleTimeString();
+      var text = "(" + timeStr + ") : TX = #" + val + "<br>";
+      txLog(text);
+
+      console.log(' sending #'+val);
+      connection.send('#'+val);
+    }
+
+		function displayDate() {
+    document.getElementById("demo").innerHTML = Date();
+}
+
+
 		</script>
 
 
