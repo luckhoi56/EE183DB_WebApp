@@ -16,7 +16,7 @@ function createGraph(data) {
 	var Y = ['Y'];
 	var Z = ['Z'];
 	for (var i = 1; i < data.length; i++) {
-		count.push(data[i][1]);
+		count.push(data[i][2]);
 		X.push(data[i][2]);
 		Y.push(data[i][3]);
 		Z.push(data[i][4]);
@@ -24,38 +24,10 @@ function createGraph(data) {
 
 	console.log(X);
 	console.log(Y);
-
-var chart1 = c3.generate({
+	console.log (document.doctype);
+var chart3 = c3.generate({
+   
     bindto: '#chart1',
-    data: {
-    	x:'count',
-      columns: [
-        X,
-        count
-        
-      ],
-      axes: {
-        count: 'count'
-      }
-    },
-    axis: {
-
-      y: {
-        label: { // ADD
-          text: 'X',
-          position: 'upper-middle'
-        }
-      }
-      
-
-
-
-    }
-});
-
-
-var chart2 = c3.generate({
-    bindto: '#chart2',
     data: {
     	x:'count',
       columns: [
@@ -65,50 +37,52 @@ var chart2 = c3.generate({
       ],
       axes: {
         count: 'count'
-      }
-    },
-    axis: {
-
-      y: {
-        label: { // ADD
-          text: 'Y',
-          position: 'upper-middle'
-        }
-      }
-      
-
-
-
-    }
-});
-
-
-	var chart2 = c3.generate({
-    bindto: '#chart3',
-    data: {
-    	x:'count',
-      columns: [
-        Z,
-        count
         
-      ],
-      axes: {
-        count: 'count'
       }
+    },
+
+    grid: {
+    	x: {
+    		show: true
+    	},
+    	y: {
+    		show: true
+    	}
     },
     axis: {
 
-      y: {
+      x: {
+      //	max: 100,
+     // 	min: 0,
         label: { // ADD
-          text: 'Z ',
+          text: 'X ',
+          position: 'upper-middle'
+        }
+      },
+
+      y: {
+      //	max: 190,
+      //	min: 0,
+        label: { // ADD
+          text: 'Y ',
           position: 'upper-middle'
         }
       }
+
+
+     
+
+
+
+
+
+
       
 
-
-
     }
+
+
+
 });
 
 }
