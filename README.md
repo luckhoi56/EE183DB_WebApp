@@ -22,3 +22,15 @@ python -m SimpleHTTPServer
 ```
 
 Visit http://localhost:8000 to see the website.
+
+
+### pyServer Library
+
+To make the server run after import, you have to call
+start_thread()
+server_run()
+
+
+The server will have two functions:
+update (sent_message) #this message will be sent to the server
+recv () # to recv the incoming message. To print the incoming message, you can call revc(1) to print to the console
