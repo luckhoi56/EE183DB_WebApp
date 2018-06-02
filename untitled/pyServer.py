@@ -33,8 +33,9 @@ def message_received(client, server, message):
     #print(flag)
 
 
-PORT=8181
-server = WebsocketServer(PORT)
+PORT=8500
+HOST ='0.0.0.0'
+server = WebsocketServer(PORT,HOST)
 
 #client = WebsocketServer
 
@@ -85,4 +86,4 @@ def main():
 
        # server_run()
             update ("toyota")
-
+#main()
