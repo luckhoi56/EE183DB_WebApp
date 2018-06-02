@@ -1,9 +1,21 @@
 import pyServer
-
+import json
+import time
 def main():
     pyServer.call()
+    x=1
+    y=1
+
 
     while 1:
-        pyServer.update("ahihi")
-        pyServer.update("chode")
+        m_string = [x, y]
+        data = json.dumps(m_string)
+
+        pyServer.update(data)
+        print (data)
+        x +=1
+        y+=1
+        time.sleep(0.5)
+
+
 main()
