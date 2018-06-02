@@ -24,12 +24,8 @@
  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <div id="graph"></div>
   		
-  		<br><br><br>
-  		<br><br><br>
-  		<br><br><br>
-  		<br><br><br>
-  		<br><br><br>
-  		<br><br><br>
+  		
+  		
     	<div class="container">
     		<div id="chart1"></div>
     		<div id="chart2"></div>
@@ -112,7 +108,40 @@ var data = [{
   line: {color: '#80CAF6'}
 }]
 
-Plotly.plot('graph', data);  
+
+
+
+var layout = {
+  title: 'XY Coordinate',
+  xaxis: {
+    title: 'x Axis',
+    titlefont: {
+      family: 'Courier New, monospace',
+      size: 18,
+      color: '#7f7f7f'
+    }
+  },
+  yaxis: {
+    title: 'y Axis',
+    titlefont: {
+      family: 'Courier New, monospace',
+      size: 18,
+      color: '#7f7f7f'
+    }
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+Plotly.plot('graph', data,layout);  
 
 var cnt = 0;
 
@@ -125,11 +154,16 @@ var interval = setInterval(function() {
   y: [[m_json.y]]
   }
   
-  var olderTime = m_json.x -50;
+  var olderTime = m_json.x -100;
   var futureTime = m_json.x +50;
   
   var minuteView = {
         xaxis: {
+          type: 'number',
+          range: [olderTime,futureTime]
+        },
+
+        yaxis: {
           type: 'number',
           range: [olderTime,futureTime]
         }
