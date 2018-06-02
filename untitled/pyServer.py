@@ -3,8 +3,8 @@
 import threading
 import time
 from websocket_server import WebsocketServer
-input = "this is for testing purpose"
-flag =1
+input = ""
+output =""
 # Called for every client connecting (after handshake)
 def new_client(client, server):
 	print("New client connected and was given id %d" % client['id'])
@@ -18,7 +18,7 @@ def client_left(client, server):
 #if len(message) > 200:
 	#	message = message[:200]+'..'
 # Called when a client sends a message
-def message_received(client, server, message):
+def s_receive(client, server, message):
     global flag
     global input
     if len(message) > 200:
@@ -28,7 +28,11 @@ def message_received(client, server, message):
     #print ("Send intput: %d", flag)
     #flag = flag +1
     #print(flag)
-
+def recv(flag_print=0):
+    global input
+    if (flag_print ==1):
+        print (input)
+    return input
 
 PORT=8181
 server = WebsocketServer(PORT)
@@ -37,27 +41,30 @@ server = WebsocketServer(PORT)
 
 
 
-def call():
+def start_thread():
 
 
-    thread = threading.Thread(target=update, args=())
+    thread = threading.Thread(target=internal_update, args=())
     thread.daemon = True
     thread.start()
 
-def update():
+def internal_update():
     while 1:
-        global flag
-        flag = flag + 1
-        temp = str(flag)
-        server.send_message_to_all(temp)
+        #global flag
+        #flag = flag + 1
+        #temp = str(flag)
+        server.send_message_to_all(output)
         time.sleep (0.5)
         #print (flag )
+def update(sent_message):
+    global output
+    output = sent_message
 #while 1:
 def server_run():
     global flag
     server.set_fn_new_client(new_client)
     server.set_fn_client_left(client_left)
-    server.set_fn_message_received(message_received)
+    server.set_fn_message_received(s_receive)
 	#server.send_message_to_all(message_sent(client,server,"hardcode"));
     #server.send_message_to_all(flag)
 
@@ -68,8 +75,7 @@ def server_run():
 
 
 def main():
-        call()
+        start_thread()
 
         server_run()
 
-main()
