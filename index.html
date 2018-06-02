@@ -38,41 +38,49 @@
   <input type="number" name="x" id="y"/>y</intput>
 	<br>
 	<button id="myBtn">Try it</button>
-	<p id="demo"></p>
+	<p id="Sent"></p>
+	<br>
+	<br>
+	<p id ="Receive"></p>
 
 
 		<script src="javascripts/create-graph.js"></script>
-		<script>
+		<script> 
 		
 
 		document.getElementById("myBtn").addEventListener("click",testJSON);
-		var connection = new WebSocket('ws://'+location.hostname+':8181/');
+		var connection = new WebSocket("ws://localhost:8181/");
 		function testJSON(){
 			var x = document.getElementById('x').value;
 			var y = document.getElementById('y').value;
 			var myObj = {"x": x, "y" :y};
 			var myJSON = JSON.stringify(myObj);
-			document.getElementById("demo").innerHTML = myJSON;
+			document.getElementById("Sent").innerHTML = "Sent: "+myJSON;
 			
 			connection.send(myJSON);
 			//connection.close();
 
 		}
+		connection.onmessage = function (e){
+			//e.data contains received string
+			document.getElementById("Receive").innerHTML = "Receive: " + e.data;
+		}
+		connection.onopen = function (){
+			connection.send("0");
+		}
 
 
-		function btnSend(val) {
-      var timeStr = new Date().toLocaleTimeString();
-      var text = "(" + timeStr + ") : TX = #" + val + "<br>";
-      txLog(text);
-
-      console.log(' sending #'+val);
-      connection.send('#'+val);
+		function output(str) {
+      var log = document.getElementById("log");
+      var escaped = str.replace(/&/, "&amp;").replace(/</, "&lt;").
+        replace(/>/, "&gt;").replace(/"/, "&quot;"); // "
+      log.innerHTML = escaped + "<br>" + log.innerHTML;
     }
 
-		function displayDate() {
-    document.getElementById("demo").innerHTML = Date();
-}
 
+	
+
+	
 
 		</script>
 
