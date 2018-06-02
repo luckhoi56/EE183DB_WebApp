@@ -18,8 +18,10 @@
 
 		<!-- Load papaparse.js -->
 		<script src="javascripts/papaparse.min.js"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   	</head>
   	<body>
+  		<div id ="myDiv">
   		<br><br><br>
   		<br><br><br>
   		<br><br><br>
@@ -44,12 +46,14 @@
 	<p id ="Receive"></p>
 
 
-		<script src="javascripts/create-graph.js"></script>
+		<!--<script src="javascripts/create-graph.js"></script>
+		-->
+
 		<script> 
 		
 
 		document.getElementById("myBtn").addEventListener("click",testJSON);
-		var connection = new WebSocket("ws://131.179.27.143:8500/");
+		var connection = new WebSocket("ws://localhost:8181/");
 		function testJSON(){
 			var x = document.getElementById('x').value;
 			var y = document.getElementById('y').value;
@@ -63,7 +67,11 @@
 		}
 		connection.onmessage = function (e){
 			//e.data contains received string
-			document.getElementById("Receive").innerHTML = "Receive: " + e.data;
+			//document.getElementById("Receive").innerHTML = "Receive: " + e.data;
+			var temp = JSON.parse(e.data)
+			
+			document.getElementById("Receive").innerHTML = "Receive: " + temp.x;
+
 		}
 		connection.onopen = function (){
 			connection.send("0");

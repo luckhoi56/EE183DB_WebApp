@@ -8,7 +8,10 @@ def main():
 
 
     while 1:
-        m_string = [x, y]
+        m_string = {
+            "x": x,
+            "y": y
+        }
         data = json.dumps(m_string)
 
         pyServer.update(data)
