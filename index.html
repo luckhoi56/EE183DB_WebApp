@@ -18,10 +18,12 @@
 
 		<!-- Load papaparse.js -->
 		<script src="javascripts/papaparse.min.js"></script>
-		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+		
   	</head>
   	<body>
-  		<div id ="myDiv">
+ <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <div id="graph"></div>
+  		
   		<br><br><br>
   		<br><br><br>
   		<br><br><br>
@@ -48,12 +50,14 @@
 
 		<!--<script src="javascripts/create-graph.js"></script>
 		-->
-
+		<script type="text/javascript" src="smoothie.js"></script>
+		<canvas id="mycanvas" width="400" height="100"></canvas>
 		<script> 
 		
 
 		document.getElementById("myBtn").addEventListener("click",testJSON);
 		var connection = new WebSocket("ws://localhost:8181/");
+		var m_json;
 		function testJSON(){
 			var x = document.getElementById('x').value;
 			var y = document.getElementById('y').value;
@@ -65,12 +69,20 @@
 			//connection.close();
 
 		}
+
+
+
+
+ 
+
+
 		connection.onmessage = function (e){
 			//e.data contains received string
 			//document.getElementById("Receive").innerHTML = "Receive: " + e.data;
-			var temp = JSON.parse(e.data)
+			m_json = JSON.parse(e.data)
 			
-			document.getElementById("Receive").innerHTML = "Receive: " + temp.x;
+			document.getElementById("Receive").innerHTML = "Receive: " + m_json.x;
+			addData(m_json);
 
 		}
 		connection.onopen = function (){
@@ -86,7 +98,49 @@
     }
 
 
-	
+   
+function rand() {
+  return Math.random();
+}
+
+var time = new Date();
+
+var data = [{
+  x: [0], 
+  y: [0],
+  mode: 'lines',
+  line: {color: '#80CAF6'}
+}]
+
+Plotly.plot('graph', data);  
+
+var cnt = 0;
+
+var interval = setInterval(function() {
+  
+  var time = new Date();
+  
+  var update = {
+  x:  [[m_json.x]],
+  y: [[m_json.y]]
+  }
+  
+  var olderTime = m_json.x -50;
+  var futureTime = m_json.x +50;
+  
+  var minuteView = {
+        xaxis: {
+          type: 'number',
+          range: [olderTime,futureTime]
+        }
+      };
+  
+  Plotly.relayout('graph', minuteView);
+  Plotly.extendTraces('graph', update, [0])
+  
+  if(cnt === 100) clearInterval(interval);
+}, 1000);
+
 
 	
 
