@@ -1,7 +1,9 @@
-import pyServer as server
-#to start the server, run call(),
-server.start_thread()
-server.server_run()
+import pyServer
 
-#update(message), to send message
-#receive
+def main():
+    pyServer.call()
+
+    while 1:
+        pyServer.update("ahihi")
+        pyServer.update("chode")
+main()
