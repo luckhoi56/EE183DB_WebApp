@@ -27,8 +27,7 @@ Visit http://localhost:8000 to see the website.
 ### pyServer Library
 
 To make the server run after import, you have to call
-start_thread()
-server_run()
+call()
 
 
 The server will have two functions:

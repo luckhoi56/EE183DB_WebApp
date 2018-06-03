@@ -52,7 +52,7 @@
 		
 
 		document.getElementById("myBtn").addEventListener("click",testJSON);
-		var connection = new WebSocket("ws://localhost:8181/");
+		var connection = new WebSocket("ws://131.179.27.143:8181/");
 		var m_json;
 		function testJSON(){
 			var x = document.getElementById('x').value;
@@ -77,11 +77,14 @@
 			//document.getElementById("Receive").innerHTML = "Receive: " + e.data;
 			m_json = JSON.parse(e.data)
 			
-			document.getElementById("Receive").innerHTML = "Receive: " + m_json.x;
+			document.getElementById("Receive").innerHTML = "Receive: " + m_json.x + 
+			" " + m_json.y;
 			addData(m_json);
 
 		}
 		connection.onopen = function (){
+						document.getElementById("Receive").innerHTML = "connected";
+
 			connection.send("0");
 		}
 
@@ -160,12 +163,12 @@ var interval = setInterval(function() {
   var minuteView = {
         xaxis: {
           type: 'number',
-          range: [olderTime,futureTime]
+          range: [-500,500]
         },
 
         yaxis: {
           type: 'number',
-          range: [olderTime,futureTime]
+          range: [-500,500]
         }
       };
   
