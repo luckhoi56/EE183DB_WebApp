@@ -46,12 +46,15 @@
 	<img id="Image1" src="http://www.w3schools.com/js/pic_bulboff.gif" />
 	<img id="Image2" src="http://www.w3schools.com/js/pic_bulboff.gif" />
 	<img id="Image3" src="http://www.w3schools.com/js/pic_bulboff.gif" />
+	<img id="Image4" src="http://www.w3schools.com/js/pic_bulboff.gif" />
+	<br>
 	<p id ="Phone1"></p>
-	<br>
 	<p id ="Phone2"></p>
-	<br>
 	<p id ="Phone3"></p>
+	<p id ="Phone4"></p>
+
 	<br>
+	
 
 
 
@@ -68,6 +71,8 @@
 		var m_json;
 		var count1 =1;
 		var count2=1;
+		var count3 =1;
+		var count4 =1;
 		function testJSON(){
 			var x = document.getElementById('x').value;
 			var y = document.getElementById('y').value;
@@ -117,19 +122,84 @@
 
 			//document.getElementById("Phone1").innerHTML = m_json2.iBeacon.minor;
 			if (m_json2.iBeacon.major=="5" && m_json2.iBeacon.minor=="1"){
-				document.getElementById("Phone1").innerHTML = "LG G4";
+				//document.getElementById("Phone1").innerHTML = "Beacon 1";
 				document.getElementById("Image1").src ="http://www.w3schools.com/js/pic_bulbon.gif";
 				count1=0;
 
 			}
 			else{
 				if (count1>=50){
-					document.getElementById("Phone1").innerHTML = "";
+					//document.getElementById("Phone1").innerHTML = "";
 					document.getElementById("Image1").src ="http://www.w3schools.com/js/pic_bulboff.gif";
 					 
 				}
 				count1 +=1;
 			}
+
+			if (m_json2.iBeacon.major=="5" && m_json2.iBeacon.minor=="2"){
+				//document.getElementById("Phone2").innerHTML = "Beacon 2";
+				document.getElementById("Image2").src ="http://www.w3schools.com/js/pic_bulbon.gif";
+				count2=0;
+
+			}
+			else{
+				if (count2>=50){
+					//document.getElementById("Phone2").innerHTML = "";
+					document.getElementById("Image2").src ="http://www.w3schools.com/js/pic_bulboff.gif";
+					 
+				}
+				count2 +=1;
+			}
+
+
+
+			if (m_json2.iBeacon.major=="5" && m_json2.iBeacon.minor=="3"){
+				//document.getElementById("Phone3").innerHTML = "Beacon 3";
+				document.getElementById("Image3").src ="http://www.w3schools.com/js/pic_bulbon.gif";
+				count3=0;
+
+			}
+			else{
+				if (count3>=50){
+					//document.getElementById("Phone3").innerHTML = "";
+					document.getElementById("Image3").src ="http://www.w3schools.com/js/pic_bulboff.gif";
+					 
+				}
+				count3 +=1;
+			}
+
+
+			if (m_json2.iBeacon.major=="5" && m_json2.iBeacon.minor=="4"){
+				//document.getElementById("Phone4").innerHTML = "Beacon 4";
+				document.getElementById("Image4").src ="http://www.w3schools.com/js/pic_bulbon.gif";
+				count4=0;
+
+			}
+			else{
+				if (count4>=50){
+					//document.getElementById("Phone4").innerHTML = "";
+					document.getElementById("Image4").src ="http://www.w3schools.com/js/pic_bulboff.gif";
+					 
+				}
+				count4 +=1;
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			
 			
 		}
