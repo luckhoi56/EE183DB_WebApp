@@ -63,6 +63,8 @@
 		var connection = new WebSocket("ws://131.179.27.143:8181/");
 		var connection2 = new WebSocket("ws://131.179.55.175:8182/");
 		var m_json;
+		var count1 =1;
+		var count2=1;
 		function testJSON(){
 			var x = document.getElementById('x').value;
 			var y = document.getElementById('y').value;
@@ -107,13 +109,21 @@
 		connection2.onmessage = function (e){
 			//e.data contains received string
 			//document.getElementById("Receive").innerHTML = "Receive: " + e.data;
-			var flag1 =0;
-			var flag2=0;
+			
 			m_json2 = JSON.parse(e.data)
+
 			//document.getElementById("Phone1").innerHTML = m_json2.iBeacon.minor;
 			if (m_json2.iBeacon.major=="5" && m_json2.iBeacon.minor=="1"){
-				document.getElementById("Phone1").innerHTML = "LG G4" ;
+				document.getElementById("Phone1").innerHTML = "LG G4";
+				count1=0;
 
+			}
+			else{
+				if (count1>=100){
+					document.getElementById("Phone1").innerHTML = "";
+					 
+				}
+				count1 +=1;
 			}
 			//	document.getElementById("Phone1").innerHTML = "LG G4";
 			//}
