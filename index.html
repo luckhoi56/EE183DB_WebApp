@@ -67,7 +67,8 @@
 
 		document.getElementById("myBtn").addEventListener("click",testJSON);
 		var connection = new WebSocket("ws://131.179.27.143:8181/");
-		var connection2 = new WebSocket("ws://131.179.55.175:8182/");
+		//var connection2 = new WebSocket("ws://131.179.55.175:8182/");
+		var connection2 = new WebSocket("ws://131.179.27.143:8182/");
 		var m_json;
 		var count1 =1;
 		var count2=1;
@@ -259,7 +260,10 @@ var layout = {
       family: 'Courier New, monospace',
       size: 18,
       color: '#7f7f7f'
-    }
+    },
+    range: [0,3200]
+
+
   },
   yaxis: {
     title: 'y Axis',
@@ -267,7 +271,9 @@ var layout = {
       family: 'Courier New, monospace',
       size: 18,
       color: '#7f7f7f'
-    }
+    },
+    range: [0,800]
+
   }
 };
 
@@ -294,18 +300,17 @@ var interval = setInterval(function() {
   y: [[m_json.y]]
   }
   
-  var olderTime = m_json.x -100;
-  var futureTime = m_json.x +50;
+  
   
   var minuteView = {
         xaxis: {
           type: 'number',
-          range: [-500,500]
+          range: [0,800]
         },
 
         yaxis: {
           type: 'number',
-          range: [-500,500]
+          range: [0,1600]
         }
       };
   
