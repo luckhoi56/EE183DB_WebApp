@@ -1,5 +1,5 @@
 
-
+import json
 import threading
 import time
 from websocket_server import WebsocketServer
@@ -74,7 +74,13 @@ def update(message):
     global output
     output = message
 
-
+def JSON_convert (x,y):
+    m_string = {
+        "x": x,
+        "y": y
+    }
+    data = json.dumps(m_string)
+    return data
 
 
 
