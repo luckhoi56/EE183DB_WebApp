@@ -34,3 +34,10 @@ server_run()
 The server will have two functions:
 update (sent_message) #this message will be sent to the server
 recv () # to recv the incoming message. To print the incoming message, you can call revc(1) to print to the console
+
+
+
+
+1. THe interface should have IP connect to rasbperry pi
+2. The rasp berry pi should have host as '0.0.0.0' to let 
+other users connect to it
