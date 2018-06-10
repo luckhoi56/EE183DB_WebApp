@@ -66,17 +66,17 @@
 
 
 		document.getElementById("myBtn").addEventListener("click",testJSON);
-	//	var connection = new WebSocket("ws://131.179.27.143:8181/"); //this websocket is for Minh's car
-	var connection = new WebSocket("ws://localhost:8181/"); //this websocket is for Minh's car
+		var connection = new WebSocket("ws://131.179.27.136:8181/"); //this websocket is for Minh's car
+	//var connection = new WebSocket("ws://localhost:8181/"); //this websocket is for Minh's car
 
-		var connection2 = new WebSocket("ws://131.179.27.143:8182/"); //this web socket is for myBeacon
+		var connection2 = new WebSocket("ws://131.179.27.136:8182/"); //this web socket is for myBeacon
 		var m_json;
 		var count1 =1;
 		var count2=1;
 		var count3 =1;
 		var count4 =1;
 		var timeCount =100;
-		var threshold =-55;
+		var threshold =-59;
 		function testJSON(){
 			var x = document.getElementById('x').value;
 			var y = document.getElementById('y').value;
@@ -241,6 +241,8 @@ var trace1 = {
   y: [0],
 //	mode: 'markers',
   type: 'line',
+	title: 'coordinate',
+	name:'car coordinate',
   line: {color: '#80CAF6'}
 };
 
@@ -249,6 +251,7 @@ var trace2 = {
   x: [1],
   y: [1],
   mode: 'markers',
+	name:'obstacle coordinate',
   line: {color: '#FF0000'}
 };
 
@@ -298,12 +301,12 @@ var interval = setInterval(function() {
 
 	//if (m_json.type=="coordinate"){
 	//trace1={
-		x:  [[m_json.x],[m_json2.x]],
-	  y: [[m_json.y],[m_json2.y]]
+		x:  [[m_json.x]],
+	  y: [[m_json.y]]
 		 //'marker.color': 'red'
 
   }
-/*
+
 	var update2 = {
 
 	//if (m_json.type=="coordinate"){
@@ -313,7 +316,7 @@ var interval = setInterval(function() {
 		 //'marker.color': 'red'
 
   }
-*/
+
 
 
 

@@ -73,3 +73,8 @@ m_string = {
 
 The color of the obstacle is red, and the color of the coordinate is blue.
 
+### Beacon Scanner
+The script can be found in Minh's Ras:
+/projects/KhoiDeveloper/EE183DB_WebApp/beacon/node_modules
+
+Just run: $sudo node testBeacon.js
