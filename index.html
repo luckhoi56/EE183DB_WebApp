@@ -239,8 +239,8 @@
 var trace1 = {
   x: [0],
   y: [0],
-	mode: 'markers',
-  type: 'scatter',
+//	mode: 'markers',
+  type: 'line',
   line: {color: '#80CAF6'}
 };
 
@@ -248,7 +248,7 @@ var trace1 = {
 var trace2 = {
   x: [1],
   y: [1],
-  mode: 'scatter',
+  mode: 'markers',
   line: {color: '#FF0000'}
 };
 
@@ -298,12 +298,12 @@ var interval = setInterval(function() {
 
 	//if (m_json.type=="coordinate"){
 	//trace1={
-		x:  [[m_json.x]],
-	  y: [[m_json.y]]
+		x:  [[m_json.x],[m_json2.x]],
+	  y: [[m_json.y],[m_json2.y]]
 		 //'marker.color': 'red'
 
   }
-
+/*
 	var update2 = {
 
 	//if (m_json.type=="coordinate"){
@@ -313,7 +313,7 @@ var interval = setInterval(function() {
 		 //'marker.color': 'red'
 
   }
-
+*/
 
 
 
