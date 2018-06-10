@@ -40,3 +40,36 @@ recv () # to recv the incoming message. To print the incoming message, you can c
 1. THe interface should have IP connect to rasbperry pi
 2. The rasp berry pi should have host as '0.0.0.0' to let 
 other users connect to it
+
+
+
+###JSON Format
+1. The json format should be strictly as following:
+
+m_string = {
+            "type": type,
+            "x": x,
+            "y": y
+        }
+
+the type must be either: "coordinate",  or "obstacle"
+
+For example 
+m_string = {
+            "type": "obstacle",
+            "x": x,
+            "y": y
+        }
+
+or
+
+
+m_string = {
+            "type": "coordinate",
+            "x": x,
+            "y": y
+        }
+
+
+The color of the obstacle is red, and the color of the coordinate is blue.
+
