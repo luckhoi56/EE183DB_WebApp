@@ -18,14 +18,14 @@
 
 		<!-- Load papaparse.js -->
 		<script src="javascripts/papaparse.min.js"></script>
-		
+
   	</head>
   	<body>
  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <div id="graph"></div>
-  		
-  		
-  		
+
+
+
     	<div class="container">
     		<div id="chart1"></div>
     		<div id="chart2"></div>
@@ -54,7 +54,7 @@
 	<p id ="Phone4"></p>
 
 	<br>
-	
+
 
 
 
@@ -62,13 +62,14 @@
 		-->
 		<script type="text/javascript" src="smoothie.js"></script>
 		<canvas id="mycanvas" width="400" height="100"></canvas>
-		<script> 
-		
+		<script>
+
 
 		document.getElementById("myBtn").addEventListener("click",testJSON);
-		var connection = new WebSocket("ws://131.179.27.143:8181/");
-		//var connection2 = new WebSocket("ws://131.179.55.175:8182/");
-		var connection2 = new WebSocket("ws://131.179.27.143:8182/");
+	//	var connection = new WebSocket("ws://131.179.27.143:8181/"); //this websocket is for Minh's car
+	var connection = new WebSocket("ws://localhost:8181/"); //this websocket is for Minh's car
+
+		var connection2 = new WebSocket("ws://131.179.27.143:8182/"); //this web socket is for myBeacon
 		var m_json;
 		var count1 =1;
 		var count2=1;
@@ -82,7 +83,7 @@
 			var myObj = {"x": x, "y" :y};
 			var myJSON = JSON.stringify(myObj);
 			document.getElementById("Sent").innerHTML = "Sent: "+myJSON;
-			
+
 			connection.send(myJSON);
 			//connection.close();
 
@@ -91,17 +92,20 @@
 
 
 
- 
+
 
 
 		connection.onmessage = function (e){
 			//e.data contains received string
 			//document.getElementById("Receive").innerHTML = "Receive: " + e.data;
-			m_json = JSON.parse(e.data)
-			
-			document.getElementById("Receive").innerHTML = "Receive: " + m_json.x + 
-			" " + m_json.y;
-			addData(m_json);
+			let temp = JSON.parse(e.data)
+			if (temp.type =="coordinate")
+				m_json = temp;
+			else if (temp.type =="obstacle")
+				m_json2 = temp;
+			document.getElementById("Receive").innerHTML = "Receive: " + temp.x +
+			" " + temp.y +" " + temp.type;
+
 
 		}
 		connection.onopen = function (){
@@ -120,7 +124,7 @@
 		connection2.onmessage = function (e){
 			//e.data contains received string
 			//document.getElementById("Receive").innerHTML = "Receive: " + e.data;
-			
+
 			m_json2 = JSON.parse(e.data)
 
 			//document.getElementById("Phone1").innerHTML = m_json2.iBeacon.minor;
@@ -134,7 +138,7 @@
 				if (count1>=timeCount){
 					//document.getElementById("Phone1").innerHTML = "";
 					document.getElementById("Image1").src ="http://www.w3schools.com/js/pic_bulboff.gif";
-					 
+
 				}
 				count1 +=1;
 			}
@@ -149,7 +153,7 @@
 				if (count2>=timeCount){
 					//document.getElementById("Phone2").innerHTML = "";
 					document.getElementById("Image2").src ="http://www.w3schools.com/js/pic_bulboff.gif";
-					 
+
 				}
 				count2 +=1;
 			}
@@ -166,7 +170,7 @@
 				if (count3>=timeCount){
 					//document.getElementById("Phone3").innerHTML = "";
 					document.getElementById("Image3").src ="http://www.w3schools.com/js/pic_bulboff.gif";
-					 
+
 				}
 				count3 +=1;
 			}
@@ -182,7 +186,7 @@
 				if (count4>=timeCount){
 					//document.getElementById("Phone4").innerHTML = "";
 					document.getElementById("Image4").src ="http://www.w3schools.com/js/pic_bulboff.gif";
-					 
+
 				}
 				count4 +=1;
 			}
@@ -203,10 +207,10 @@
 
 
 
-			
-			
+
+
 		}
-		
+
 
 		connection.onopen2 = function (){
 						document.getElementById("Receive2").innerHTML = "connected";
@@ -227,27 +231,29 @@
 
 
 
-		function output(str) {
-      var log = document.getElementById("log");
-      var escaped = str.replace(/&/, "&amp;").replace(/</, "&lt;").
-        replace(/>/, "&gt;").replace(/"/, "&quot;"); // "
-      log.innerHTML = escaped + "<br>" + log.innerHTML;
-    }
 
 
-   
-function rand() {
-  return Math.random();
-}
 
-var time = new Date();
 
-var data = [{
-  x: [0], 
+
+var trace1 = {
+  x: [0],
   y: [0],
-  mode: 'lines',
+	mode: 'markers',
+  type: 'scatter',
   line: {color: '#80CAF6'}
-}]
+};
+
+
+var trace2 = {
+  x: [1],
+  y: [1],
+  mode: 'scatter',
+  line: {color: '#FF0000'}
+};
+
+var data = [trace1, trace2];
+
 
 
 
@@ -280,28 +286,37 @@ var layout = {
 
 
 
-
-
-
-
-
-
-
-Plotly.plot('graph', data,layout);  
+Plotly.plot('graph', data,layout);
 
 var cnt = 0;
 
 var interval = setInterval(function() {
-  
-  var time = new Date();
-  
+
+  //var time = new Date();
+
   var update = {
-  x:  [[m_json.x]],
-  y: [[m_json.y]]
+
+	//if (m_json.type=="coordinate"){
+	//trace1={
+		x:  [[m_json.x]],
+	  y: [[m_json.y]]
+		 //'marker.color': 'red'
+
   }
-  
-  
-  
+
+	var update2 = {
+
+	//if (m_json.type=="coordinate"){
+	//trace1={
+		x:  [[m_json2.x]],
+	  y: [[m_json2.y]]
+		 //'marker.color': 'red'
+
+  }
+
+
+
+
   var minuteView = {
         xaxis: {
           type: 'number',
@@ -313,22 +328,13 @@ var interval = setInterval(function() {
           range: [0,1600]
         }
       };
-  
+
   Plotly.relayout('graph', minuteView);
   Plotly.extendTraces('graph', update, [0])
-  
+	Plotly.extendTraces('graph', update2, [1])
+
   if(cnt === 100) clearInterval(interval);
 }, 1000);
-
-
-	
-
 		</script>
-
-
-
-
-
-
   	</body>
 </html>
