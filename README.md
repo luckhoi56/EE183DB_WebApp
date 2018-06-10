@@ -43,7 +43,7 @@ other users connect to it
 
 
 
-###JSON Format
+### JSON Format
 1. The json format should be strictly as following:
 
 m_string = {
