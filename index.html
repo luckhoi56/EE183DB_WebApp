@@ -87,12 +87,12 @@
 		var count2=1;
 		var count3 =1;
 		var count4 =1;
-		var timeCount =100;
-		var threshold =-59;
+		var timeCount =50;
+		var threshold =-55;
 		function testJSON(){
 			var x = document.getElementById('x').value;
 			var y = document.getElementById('y').value;
-			var myObj = {"x": x, "y" :y};
+			var myObj = {"type":"coordinate","x": x, "y" :y};
 			var myJSON = JSON.stringify(myObj);
 			document.getElementById("Sent").innerHTML = "Sent: "+myJSON;
 
@@ -103,7 +103,7 @@
 
 		function button1(){
 
-			var myObj = {"beacon": 1};
+			var myObj = {"type":"beacon","minor": 1};
 			var myJSON = JSON.stringify(myObj);
 			document.getElementById("Sent2").innerHTML = "Sent: "+myJSON;
 
@@ -114,7 +114,7 @@
 
 		function button2(){
 
-			var myObj = {"beacon": 2};
+			var myObj = {"type":"beacon","minor": 2};
 			var myJSON = JSON.stringify(myObj);
 			document.getElementById("Sent2").innerHTML = "Sent: "+myJSON;
 
@@ -124,7 +124,7 @@
 		}
 		function button3(){
 
-			var myObj = {"beacon": 3};
+			var myObj = {"type":"beacon","minor": 3};
 			var myJSON = JSON.stringify(myObj);
 			document.getElementById("Sent2").innerHTML = "Sent: "+myJSON;
 
@@ -134,7 +134,7 @@
 		}
 		function button4(){
 
-			var myObj = {"beacon": 4};
+			var myObj = {"type":"beacon","minor": 4};
 			var myJSON = JSON.stringify(myObj);
 			document.getElementById("Sent2").innerHTML = "Sent: "+myJSON;
 
@@ -272,7 +272,7 @@
 		connection.onopen2 = function (){
 						document.getElementById("Receive2").innerHTML = "connected";
 
-			connection2.send("0");
+			//connection2.send("0");
 		}
 
 
