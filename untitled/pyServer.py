@@ -6,6 +6,7 @@ from websocket_server import WebsocketServer
 input = "this is for testing purpose"
 output =""
 flag =1
+m_message =""
 # Called for every client connecting (after handshake)
 def new_client(client, server):
 	print("New client connected and was given id %d" % client['id'])
@@ -22,17 +23,21 @@ def client_left(client, server):
 def message_received(client, server, message):
     global flag
     global input
+    global m_message
     if (message =='{"x":"24","y":"42"}'):
         time.time()
     if len(message) > 200:
         message = message[:200]+'..'
     print("Client(%d) said: %s" % (client['id'], message))
+    m_message = message
     #server.send_message_to_all(input)
     #print ("Send intput: %d", flag)
     #flag = flag +1
     #print(flag)
 
-
+def get_message():
+    global m_message
+    return m_message
 PORT=8181
 HOST =''
 server = WebsocketServer(PORT,HOST)
