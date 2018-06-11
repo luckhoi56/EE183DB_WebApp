@@ -66,8 +66,8 @@
 
 
 		document.getElementById("myBtn").addEventListener("click",testJSON);
-		var connection = new WebSocket("ws://131.179.27.136:8181/"); //this websocket is for Minh's car
-	//var connection = new WebSocket("ws://localhost:8181/"); //this websocket is for Minh's car
+		//var connection = new WebSocket("ws://131.179.27.136:8181/"); //this websocket is for Minh's car
+	var connection = new WebSocket("ws://localhost:8181/"); //this websocket is for Minh's car
 
 		var connection2 = new WebSocket("ws://131.179.27.136:8182/"); //this web socket is for myBeacon
 		var m_json;
@@ -99,12 +99,16 @@
 			//e.data contains received string
 			//document.getElementById("Receive").innerHTML = "Receive: " + e.data;
 			let temp = JSON.parse(e.data)
-			if (temp.type =="coordinate")
-				m_json = temp;
-			else if (temp.type =="obstacle")
-				m_json2 = temp;
-			document.getElementById("Receive").innerHTML = "Receive: " + temp.x +
-			" " + temp.y +" " + temp.type;
+
+			m_json = temp;
+
+			document.getElementById("Receive").innerHTML = "Receive: "
+			+ " " + m_json.x1 +" " +" " + m_json.y1 +" "+
+			+ " " + m_json.x2 +" " +" " + m_json.y2 +" "+
+			+ " " + m_json.x3 +" " +" " + m_json.y3 +" "+
+			+ " " + m_json.x4 +" " +" " + m_json.y4 +" "+
+			+ " " + m_json.x5 +" " +" " + m_json.y5 +" "+
+			+ " " + m_json.x6 +" " +" " + m_json.y6
 
 
 		}
@@ -301,8 +305,8 @@ var interval = setInterval(function() {
 
 	//if (m_json.type=="coordinate"){
 	//trace1={
-		x:  [[m_json.x]],
-	  y: [[m_json.y]]
+		x:  [[m_json.x1]],
+	  y: [[m_json.y1]]
 		 //'marker.color': 'red'
 
   }
@@ -311,8 +315,8 @@ var interval = setInterval(function() {
 
 	//if (m_json.type=="coordinate"){
 	//trace1={
-		x:  [[m_json2.x]],
-	  y: [[m_json2.y]]
+		x:  [[m_json.x2,m_json.x3,m_json.x4,m_json.x5,m_json.x6]],
+	  y: [[m_json.y2,m_json.y3,m_json.y4,m_json.y5,m_json.y6]]
 		 //'marker.color': 'red'
 
   }
