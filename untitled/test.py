@@ -1,3 +1,5 @@
+
+
 import pyServer
 import json
 import time
@@ -69,7 +71,7 @@ def main():
         y6 = y6 +  1
 
 
-        time.sleep(0.4)
+        time.sleep(0.03)
 
 
 
