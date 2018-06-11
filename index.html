@@ -32,7 +32,12 @@
     		<div id="chart3"></div>
     	</div>
 
-
+			<button id="button1">b1</button>
+			<button id="button2">b2</button>
+			<button id="button3">b3</button>
+			<button id="button4">b4</button>
+			<br>
+			<br>
   <input type="number" name="x" id="x"/>x</intput>
 	<br><br>
   <input type="number" name="x" id="y"/>y</intput>
@@ -40,6 +45,7 @@
 	<button id="myBtn">Try it</button>
 	<p id="Sent"></p>
 	<br>
+	<p id="Sent2"></p>
 	<br>
 	<p id ="Receive" ></p>
 	<br>
@@ -52,8 +58,9 @@
 	<p id ="Phone2"></p>
 	<p id ="Phone3"></p>
 	<p id ="Phone4"></p>
-
 	<br>
+	<
+
 
 
 
@@ -66,6 +73,11 @@
 
 
 		document.getElementById("myBtn").addEventListener("click",testJSON);
+		document.getElementById("button1").addEventListener("click",button1);
+		document.getElementById("button2").addEventListener("click",button2);
+		document.getElementById("button3").addEventListener("click",button3);
+		document.getElementById("button4").addEventListener("click",button4);
+
 		//var connection = new WebSocket("ws://131.179.27.136:8181/"); //this websocket is for Minh's car
 	var connection = new WebSocket("ws://localhost:8181/"); //this websocket is for Minh's car
 
@@ -89,6 +101,47 @@
 
 		}
 
+		function button1(){
+
+			var myObj = {"beacon": 1};
+			var myJSON = JSON.stringify(myObj);
+			document.getElementById("Sent2").innerHTML = "Sent: "+myJSON;
+
+			connection.send(myJSON);
+			//connection.close();
+
+		}
+
+		function button2(){
+
+			var myObj = {"beacon": 2};
+			var myJSON = JSON.stringify(myObj);
+			document.getElementById("Sent2").innerHTML = "Sent: "+myJSON;
+
+			connection.send(myJSON);
+			//connection.close();
+
+		}
+		function button3(){
+
+			var myObj = {"beacon": 3};
+			var myJSON = JSON.stringify(myObj);
+			document.getElementById("Sent2").innerHTML = "Sent: "+myJSON;
+
+			connection.send(myJSON);
+			//connection.close();
+
+		}
+		function button4(){
+
+			var myObj = {"beacon": 4};
+			var myJSON = JSON.stringify(myObj);
+			document.getElementById("Sent2").innerHTML = "Sent: "+myJSON;
+
+			connection.send(myJSON);
+			//connection.close();
+
+		}
 
 
 
