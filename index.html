@@ -83,11 +83,12 @@
 
 		var connection2 = new WebSocket("ws://131.179.27.136:8182/"); //this web socket is for myBeacon
 		var m_json;
+
 		var count1 =1;
 		var count2=1;
 		var count3 =1;
 		var count4 =1;
-		var timeCount =50;
+		var timeCount =30;
 		var threshold =-55;
 		function testJSON(){
 			var x = document.getElementById('x').value;
@@ -182,7 +183,7 @@
 			//e.data contains received string
 			//document.getElementById("Receive").innerHTML = "Receive: " + e.data;
 
-			m_json2 = JSON.parse(e.data)
+			var m_json2 = JSON.parse(e.data)
 
 			//document.getElementById("Phone1").innerHTML = m_json2.iBeacon.minor;
 			if (m_json2.iBeacon.major=="5" && m_json2.iBeacon.minor=="1" && Number(m_json2.rssi)>=threshold){
@@ -319,6 +320,9 @@ var data = [trace1, trace2];
 
 
 var layout = {
+	autosize:false,
+	width: 1200,
+	height: 800,
   title: 'XY Coordinate',
   xaxis: {
     title: 'x Axis',
@@ -327,7 +331,7 @@ var layout = {
       size: 18,
       color: '#7f7f7f'
     },
-    range: [0,3200]
+    range: [0,400]
 
 
   },
@@ -335,10 +339,11 @@ var layout = {
     title: 'y Axis',
     titlefont: {
       family: 'Courier New, monospace',
-      size: 18,
-      color: '#7f7f7f'
+      size: 45,
+      color: '#7f7f7f',
+
     },
-    range: [0,800]
+    range: [0,400]
 
   }
 };
@@ -380,12 +385,12 @@ var interval = setInterval(function() {
   var minuteView = {
         xaxis: {
           type: 'number',
-          range: [0,800]
+          range: [0,400]
         },
 
         yaxis: {
           type: 'number',
-          range: [0,1600]
+          range: [0,400]
         }
       };
 

@@ -78,3 +78,18 @@ The script can be found in Minh's Ras:
 /projects/KhoiDeveloper/EE183DB_WebApp/beacon/node_modules
 
 Just run: $sudo node testBeacon.js
+
+
+
+### Simple Setup
+1. git clone the whole directory into your linux current directory
+2. cd into the folder you just git clone
+3. Once you are inside the folder type : http-server - p 8000.
+4. Open your web browser type : localhost:8000
+The UI should be on  now
+
+
+To prepare for the server ( or to tweak the IP), find the index.html.
+Look for the var connection and change the IP to the one you want the UI connect to
+var connection2 is for beacon, you don't need to change it
+
